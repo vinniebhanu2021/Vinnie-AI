@@ -5,6 +5,7 @@ import { KeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import GameWorld from "../components/GameWorld";
 import ErrorBoundary from "../components/ErrorBoundary";
+import Preloader from "../components/Preloader";
 
 export default function Home() {
   const keyboardMap = useMemo(() => [
@@ -24,7 +25,7 @@ export default function Home() {
             <ambientLight intensity={0.5} />
             <directionalLight castShadow position={[10, 20, 10]} intensity={1.5} />
             
-            <Suspense fallback={null}>
+            <Suspense fallback={<Preloader />}>
               <Physics gravity={[0, -9.81, 0]}>
                 <GameWorld />
               </Physics>
