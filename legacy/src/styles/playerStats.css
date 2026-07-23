@@ -1,0 +1,72 @@
+#playerStats {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 1rem 1.5rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+#playerStats:hover {
+  border-color: var(--glass-highlight);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5);
+  transform: translateY(-2px);
+}
+
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, #fff, var(--accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+h2 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+#playerStats__lines {
+  display: flex;
+  align-items: center;
+  margin: 0.5rem 0;
+}
+
+#playerStats__lines__thick {
+  display: block;
+  background-color: var(--accent-cyan);
+  height: 0.2rem;
+  width: 5rem;
+  border-radius: 2px;
+  box-shadow: 0 0 8px var(--accent-cyan);
+}
+
+#playerStats__lines__thin {
+  display: block;
+  background-color: var(--glass-highlight);
+  height: 0.1rem;
+  width: 4rem;
+  border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+  #playerStats {
+    left: 1rem;
+    top: 1rem;
+    padding: 0.75rem 1rem;
+  }
+  h2 {
+    font-size: 0.8rem;
+  }
+}
