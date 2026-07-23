@@ -1,10 +1,10 @@
 "use client";
-import React, { useMemo } from "react";
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
 import { KeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import GameWorld from "../components/GameWorld";
+import ErrorBoundary from "../components/ErrorBoundary";
 
 export default function Home() {
   const keyboardMap = useMemo(() => [
@@ -17,20 +17,22 @@ export default function Home() {
 
   return (
     <main style={{ width: '100vw', height: '100vh', background: '#1a1a2e', overflow: 'hidden' }}>
-      <KeyboardControls map={keyboardMap}>
-        <Canvas shadows camera={{ position: [0, 5, 10], fov: 50 }}>
-          <color attach="background" args={["#1a1a2e"]} />
-          <ambientLight intensity={0.5} />
-          <directionalLight castShadow position={[10, 20, 10]} intensity={1.5} />
-          
-          <Suspense fallback={null}>
-            <Physics gravity={[0, -9.81, 0]}>
-              <GameWorld />
-            </Physics>
-          </Suspense>
+      <ErrorBoundary>
+        <KeyboardControls map={keyboardMap}>
+          <Canvas shadows camera={{ position: [0, 5, 10], fov: 50 }}>
+            <color attach="background" args={["#1a1a2e"]} />
+            <ambientLight intensity={0.5} />
+            <directionalLight castShadow position={[10, 20, 10]} intensity={1.5} />
+            
+            <Suspense fallback={null}>
+              <Physics gravity={[0, -9.81, 0]}>
+                <GameWorld />
+              </Physics>
+            </Suspense>
 
-        </Canvas>
-      </KeyboardControls>
+          </Canvas>
+        </KeyboardControls>
+      </ErrorBoundary>
       
       {/* Universal UI Overlay */}
       <div style={{ position: 'absolute', top: '2rem', left: '2rem', color: '#fff', pointerEvents: 'none', fontFamily: 'monospace', zIndex: 100 }}>
