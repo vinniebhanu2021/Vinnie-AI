@@ -18,6 +18,8 @@ export default function Home() {
 
   return (
     <main style={{ width: '100vw', height: '100vh', background: '#1a1a2e', overflow: 'hidden' }}>
+      <Preloader />
+      
       <ErrorBoundary>
         <KeyboardControls map={keyboardMap}>
           <Canvas shadows camera={{ position: [0, 5, 10], fov: 50 }}>
@@ -25,7 +27,7 @@ export default function Home() {
             <ambientLight intensity={0.5} />
             <directionalLight castShadow position={[10, 20, 10]} intensity={1.5} />
             
-            <Suspense fallback={<Preloader />}>
+            <Suspense fallback={null}>
               <Physics gravity={[0, -9.81, 0]}>
                 <GameWorld />
               </Physics>
