@@ -4,6 +4,7 @@ import { useFrame } from "@react-three/fiber";
 import { useKeyboardControls } from "@react-three/drei";
 import { RigidBody, CapsuleCollider } from "@react-three/rapier";
 import * as THREE from "three";
+import { mobileInputs } from "./MobileControls";
 
 const SPEED = 7;
 const JUMP_FORCE = 8;
@@ -20,7 +21,13 @@ export default function Player({ playerPositionRef }) {
   useFrame((state, delta) => {
     if (!bodyRef.current || !avatarGroupRef.current) return;
 
-    const { forward, backward, left, right, jump } = get();
+    // Merge physical keyboard inputs with Virtual Touch inputs!
+    const { forward: kF, backward: kB, left: kL, right: kR, jump: kJ } = get();
+    const forward = kF || mobileInputs.forward;
+    const backward = kB || mobileInputs.backward;
+    const left = kL || mobileInputs.left;
+    const right = kR || mobileInputs.right;
+    const jump = kJ || mobileInputs.jump;
     
     // Get current velocity and position
     const velocity = bodyRef.current.linvel();
