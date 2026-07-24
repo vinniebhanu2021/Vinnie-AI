@@ -5,7 +5,6 @@ import { KeyboardControls } from "@react-three/drei";
 import { Physics } from "@react-three/rapier";
 import GameWorld from "../components/GameWorld";
 import ErrorBoundary from "../components/ErrorBoundary";
-import Preloader from "../components/Preloader";
 
 export default function Home() {
   const keyboardMap = useMemo(() => [
@@ -18,7 +17,6 @@ export default function Home() {
 
   return (
     <main style={{ width: '100vw', height: '100vh', background: '#1a1a2e', overflow: 'hidden' }}>
-      <Preloader />
       
       <ErrorBoundary>
         <KeyboardControls map={keyboardMap}>
