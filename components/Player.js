@@ -40,7 +40,11 @@ export default function Player({ playerPositionRef }) {
     frontVector.set(0, 0, Number(backward) - Number(forward));
     sideVector.set(Number(left) - Number(right), 0, 0);
     
-    direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(SPEED);
+    direction.subVectors(frontVector, sideVector);
+    if (direction.lengthSq() > 0) {
+      direction.normalize().multiplyScalar(SPEED);
+    }
+    
     bodyRef.current.setLinvel({ x: direction.x, y: velocity.y, z: direction.z }, true);
 
     // Character Leaning Animation
